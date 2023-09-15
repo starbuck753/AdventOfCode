@@ -1,4 +1,4 @@
-def parseinput(input):
+def parseinput(input : str):
   
   rows = input.splitlines()
 
@@ -9,7 +9,7 @@ def parseinput(input):
   return
 
 
-def solvepartone(input):
+def solvepartone(input : str):
 
   result = 0
 
@@ -20,7 +20,7 @@ def solvepartone(input):
 
 # ----------------------------------------------------------------------------
 
-def solveparttwo(input):
+def solveparttwo(input : str):
 
   result = 0
 
