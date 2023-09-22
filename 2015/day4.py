@@ -10,7 +10,7 @@ def solvepartone(input):
     
     key = md5((input + str(result)).encode()).hexdigest()
 
-    if key[:5] == '00000':
+    if key.startswith('00000'):
       print(key)
       break
 
@@ -30,11 +30,11 @@ def solveparttwo(input, min):
     
     key = md5((input + str(result)).encode()).hexdigest()
 
-    if key[:5] == '000000':
+    if key.startswith('000000'):
       print(key)
       break
 
-    if not result%10000000 : print(key, result)
+    #if not result%10000000 : print(key, result)
 
     result +=1
 
@@ -59,9 +59,8 @@ sampleresult = solvepartone(sampleinput)
 result = solvepartone(input)
 print("Part One -> Expected Result:", sampleexpetedresultone, "- Result:", sampleresult, "- Input Result:", result)
 
-
 #assert solveparttwo(sampleinput) == sampleexpetedresulttwo
 
-sampleresult = solveparttwo(sampleinput, sampleexpetedresultone)
+#sampleresult = solveparttwo(sampleinput)
 result = solveparttwo(input, 117946)
 print("Part Two -> Expected Result:", sampleexpetedresulttwo, "- Result:", sampleresult, "- Input Result:", result)

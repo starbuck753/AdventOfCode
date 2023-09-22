@@ -2,10 +2,12 @@ def parseinput(input):
   
   rows = input.splitlines()
   presents = []
-
+  
   for r in rows:
     l, w, h = r.split('x')
-    presents.append([int(l), int(w), int(h)])
+    present = [int(l), int(w), int(h)]
+    present.sort()
+    presents.append(present)
   
   return presents
 
@@ -15,12 +17,12 @@ def solvepartone(input):
   result = 0
 
   presents = parseinput(input)
-
+  
   for present in presents:
     l, w, h = present
-    result += (2*l*w) + (2*w*h) + (2*h*l) + min(l*w,w*h,h*l)
+    result += (3*l*w) + (2*w*h) + (2*h*l) #+ min(l*w,w*h,h*l)
   
-  print (result)
+  #print (result)
 
   return result
 
@@ -34,9 +36,9 @@ def solveparttwo(input):
 
   for present in presents:
     l, w, h = present
-    result += min(2*l+2*w, 2*w+2*h, 2*h+2*l) + (l*w*h)
+    result += 2*l+2*w + (l*w*h) #min(2*l+2*w, 2*w+2*h, 2*h+2*l) + (l*w*h)
   
-  print (result)
+  #print (result)
 
   return result
 
