@@ -74,7 +74,7 @@ sampleinput = """^v^v^v^v^v"""
 sampleexpetedresultone = 2
 sampleexpetedresulttwo = 11
 
-file = open("day3.txt", "r")
+file = open("day03.txt", "r")
 input = file.read()
 
 assert solvepartone(sampleinput) == sampleexpetedresultone

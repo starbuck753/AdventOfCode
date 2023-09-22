@@ -1,23 +1,28 @@
 def parseinput(input):
   
   rows = input.splitlines()
-
+  presents = []
+  
   for r in rows:
-    break  
+    l, w, h = r.split('x')
+    present = [int(l), int(w), int(h)]
+    present.sort()
+    presents.append(present)
   
-  
-  return
+  return presents
 
 
 def solvepartone(input):
 
   result = 0
 
-  #parseinput(input)
-  up = input.count('(')
-  down = len(input)-up #input.count(')')
-
-  result = up - down
+  presents = parseinput(input)
+  
+  for present in presents:
+    l, w, h = present
+    result += (3*l*w) + (2*w*h) + (2*h*l) #+ min(l*w,w*h,h*l)
+  
+  #print (result)
 
   return result
 
@@ -27,21 +32,13 @@ def solveparttwo(input):
 
   result = 0
 
-  #parseinput(input)
-  floor, pos = 0, 0
+  presents = parseinput(input)
 
-  for c in input:
-    if c == '(':
-      floor += 1  
-    else:
-      floor -= 1
-
-    pos +=1
-    if floor == -1:
-      break
-
-
-  result = pos
+  for present in presents:
+    l, w, h = present
+    result += 2*l+2*w + (l*w*h) #min(2*l+2*w, 2*w+2*h, 2*h+2*l) + (l*w*h)
+  
+  #print (result)
 
   return result
 
@@ -51,11 +48,11 @@ def solveparttwo(input):
 
 
 # Start calling the function
-sampleinput = """)())())"""
-sampleexpetedresultone = -3
-sampleexpetedresulttwo = 0
+sampleinput = """2x3x4"""
+sampleexpetedresultone = 58
+sampleexpetedresulttwo = 34
 
-file = open("day1.txt", "r")
+file = open("day02.txt", "r")
 input = file.read()
 
 assert solvepartone(sampleinput) == sampleexpetedresultone
@@ -65,7 +62,7 @@ result = solvepartone(input)
 print("Part One -> Expected Result:", sampleexpetedresultone, "- Result:", sampleresult, "- Input Result:", result)
 
 
-#assert solveparttwo(sampleinput) == sampleexpetedresulttwo
+assert solveparttwo(sampleinput) == sampleexpetedresulttwo
 
 sampleresult = solveparttwo(sampleinput)
 result = solveparttwo(input)

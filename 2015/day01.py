@@ -1,42 +1,47 @@
-from hashlib import md5
+def parseinput(input):
+  
+  rows = input.splitlines()
+
+  for r in rows:
+    break  
+  
+  
+  return
+
 
 def solvepartone(input):
 
   result = 0
 
-  #print(md5(input.encode()).hexdigest())
+  #parseinput(input)
+  up = input.count('(')
+  down = len(input)-up #input.count(')')
 
-  while True:
-    
-    key = md5((input + str(result)).encode()).hexdigest()
-
-    if key.startswith('00000'):
-      print(key)
-      break
-
-    result +=1
+  result = up - down
 
   return result
 
 # ----------------------------------------------------------------------------
 
-def solveparttwo(input, min):
+def solveparttwo(input):
 
-  result = min
+  result = 0
 
-  #print(md5(input.encode()).hexdigest())
+  #parseinput(input)
+  floor, pos = 0, 0
 
-  while True:
-    
-    key = md5((input + str(result)).encode()).hexdigest()
+  for c in input:
+    if c == '(':
+      floor += 1  
+    else:
+      floor -= 1
 
-    if key.startswith('000000'):
-      print(key)
+    pos +=1
+    if floor == -1:
       break
 
-    #if not result%10000000 : print(key, result)
 
-    result +=1
+  result = pos
 
   return result
 
@@ -46,11 +51,11 @@ def solveparttwo(input, min):
 
 
 # Start calling the function
-sampleinput = """abcdef"""
-sampleexpetedresultone = 609043
+sampleinput = """)())())"""
+sampleexpetedresultone = -3
 sampleexpetedresulttwo = 0
 
-file = open("day4.txt", "r")
+file = open("day01.txt", "r")
 input = file.read()
 
 assert solvepartone(sampleinput) == sampleexpetedresultone
@@ -59,8 +64,9 @@ sampleresult = solvepartone(sampleinput)
 result = solvepartone(input)
 print("Part One -> Expected Result:", sampleexpetedresultone, "- Result:", sampleresult, "- Input Result:", result)
 
+
 #assert solveparttwo(sampleinput) == sampleexpetedresulttwo
 
-#sampleresult = solveparttwo(sampleinput)
-result = solveparttwo(input, 117946)
+sampleresult = solveparttwo(sampleinput)
+result = solveparttwo(input)
 print("Part Two -> Expected Result:", sampleexpetedresulttwo, "- Result:", sampleresult, "- Input Result:", result)

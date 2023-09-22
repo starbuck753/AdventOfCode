@@ -83,7 +83,7 @@ dvszwmarrgswjxmb"""
 sampleexpetedresultone = 2
 sampleexpetedresulttwo = 0
 
-file = open("day5.txt", "r")
+file = open("day05.txt", "r")
 input = file.read()
 
 assert isnice("aaa") == True
