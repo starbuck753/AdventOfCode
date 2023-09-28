@@ -2,8 +2,8 @@
 def solvepartone(input):
 
   result = 0
-  pos, houses = "0,0", []
-  houses.append(pos)
+  pos, houses = "0,0", set()
+  houses.add(pos)
   
   for move in input:
     x, y = pos.split(',')
@@ -18,9 +18,9 @@ def solvepartone(input):
       x += 1
     
     pos = str(x) + ',' + str(y)
-    houses.append(pos)
+    houses.add(pos)
   
-  result = len(set(houses))
+  result = len(houses)
 
   return result
 
