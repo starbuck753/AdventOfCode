@@ -1,4 +1,3 @@
-
 def solvepartone(input):
 
   result = 0
@@ -33,10 +32,9 @@ def solveparttwo(input):
     0 : "0,0",
     1 : "0,0"
   }
-  santa, robo = [], []
+  houses = set()
   turno = 0
-  santa.append(pos[turno%2])
-  robo.append(pos[turno%2])
+  houses.add(pos[turno%2])
 
   for move in input:
     x, y = pos[turno%2].split(',')
@@ -51,16 +49,11 @@ def solveparttwo(input):
       x += 1
     
     pos[turno%2] = str(x) + ',' + str(y)
-    
-    if not turno%2:
-      santa.append(pos[turno%2])
-    else:
-      robo.append(pos[turno%2])
+    houses.add(pos[turno%2])
     
     turno +=1
   
-  allhuses = santa + robo
-  result = len(set(allhuses))
+  result = len(houses)
 
   return result
 
