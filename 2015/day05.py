@@ -1,23 +1,17 @@
-from re import search
+from re import search, finditer, findall
 
 def isnice(input : str):
 
   # 1. Contains at least 3 vowels
-  if input.count('a') + input.count('e') + input.count('i') + input.count('o') + input.count('u') < 3:
+  if search(r'(.*[aeiou].*){3,}', input) == None:
     return False
   
   # 2. Contains a letter twice in a row
-  p, two = '', False
-  for c in input:
-    if c == p:
-      two = True
-      break
-    p = c
-
-  if not two : return False
+  if search(r'(\w)\1', input) == None:
+    return False
 
   # 3. Does NOT contain the strings ab, cd, pq, xy
-  if search("ab|cd|pq|xy", input) != None:
+  if search(r'ab|cd|pq|xy', input) != None:
     return False
 
   return True
@@ -27,24 +21,13 @@ def isreallynice(input : str):
   
   # 1. It contains a pair of any two letters that appears at least twice in the string without overlapping
   #   eg. xyxy (xy) or aabcdefgaa (aa), but not like aaa (aa, but it overlaps).
-  one = False
-  for i in range(len(input)-1):
-    letters = input[i:i+2]
-    if input[i+2:].find(letters) != -1:
-      one = True
-      break
-
-  if not one : return False  
+  if search(r'(..).*\1', input) == None:
+    return False
   
   # 2. It contains at least one letter which repeats with exactly one letter between them
   #   eg. xyx, abcdefeghi (efe), or even aaa.
-  two = False
-  for i in range(len(input)-2):
-    if input[i] == input[i+2]:
-      two = True
-      break
-
-  if not two : return False    
+  if search(r'(.).\1', input) == None:
+    return False
 
   return True
 

@@ -34,8 +34,6 @@ def solveparttwo(input, min):
       print(key)
       break
 
-    #if not result%10000000 : print(key, result)
-
     result +=1
 
   return result
@@ -61,6 +59,6 @@ print("Part One -> Expected Result:", sampleexpetedresultone, "- Result:", sampl
 
 #assert solveparttwo(sampleinput) == sampleexpetedresulttwo
 
-#sampleresult = solveparttwo(sampleinput)
-result = solveparttwo(input, 117946)
+sampleresult = 0 #solveparttwo(sampleinput)
+result = solveparttwo(input, result)
 print("Part Two -> Expected Result:", sampleexpetedresulttwo, "- Result:", sampleresult, "- Input Result:", result)
